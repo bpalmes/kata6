@@ -23,10 +23,13 @@ public class Kata6 {
         String nameFile="emails.txt";
         ArrayList <String> arrayMail = MailList.readFile(nameFile);
         System.out.println(arrayMail.size());
+        ArrayList<Person1> person = ListLoader.read();
         
-        HistogramBuilder<Person>builder = new HistogramBuilder<>(arrayMail);
+        HistogramBuilder<Person> builder = new HistogramBuilder<>(arrayMail);
+        HistogramBuilder<Person1> builder1 = new HistogramBuilder<>(person); 
         
         Histogram<String> domains = builder.build(new Attribute<Person, String>);
+        
         @Override
         public String get(Person item){
            return item.getMail().split("@")[1];
@@ -36,8 +39,16 @@ public class Kata6 {
         
         @Override
         public Character get(Person item){
-            return item.getMail();
+            return item.getMail().charAt(0);
     }
+        
+        Histogram<Float> pesos = builder1.build(new Attribute<Person1,Float>);
+        
+        Histogram<Character>genero = builder1.build(new Attribute <Person1,A>);
+        
+        
+        
+        
                 
         //Histogram<String> histogram = MailHistogramBuilder.build(arrayMail);
         //new HistogramDisplay(histogram).execute();
